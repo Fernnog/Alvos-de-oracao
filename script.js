@@ -47,16 +47,23 @@ function formatDateToISO(date) {
 }
 
 function formatDateForDisplay(dateString) {
+    let date; // Declare date variable here
     if (dateString instanceof Date) {
-        dateString = formatDateToISO(dateString);
+        date = dateString; // Use Date object directly
+    } else if (dateString instanceof Timestamp) { // Handle Firebase Timestamp
+        date = dateString.toDate(); // Convert Timestamp to Date object
+    } else {
+        return 'Data Inválida'; // Handle invalid input
     }
-    if (dateString instanceof Timestamp) { // Handle Firebase Timestamp
-        dateString = dateString.toDate(); // Convert Timestamp to Date object for formatting
-    }
-    if (!dateString || dateString.includes('NaN')) return 'Data Inválida';
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return 'Data Inválida';
-    return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+
+
+    if (isNaN(date.getTime())) return 'Data Inválida'; // Check for invalid Date object
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed, so add 1
+    const year = date.getFullYear();
+
+    return `${day}/${month}/${year}`; // Format as DD/MM/YYYY
 }
 
 function timeElapsed(date) {
