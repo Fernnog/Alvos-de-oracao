@@ -8,13 +8,13 @@ Este projeto é um diário de oração digital pessoal, desenvolvido para ajudar
 
 **Logo acima da barra de progresso, o novo quadro semanal "Sua Semana de Perseverança" exibe visualmente sua consistência nos últimos 7 dias.** Cada dia da semana é representado, e um "tick" verde aparece nos dias em que você confirmou a perseverança. Este quadro, que surge dinamicamente quando você inicia sua jornada de perseverança, oferece uma visão rápida e encorajadora do seu progresso semanal.
 
-Com um sistema de contas de usuário para privacidade, o aplicativo oferece um espaço dedicado para detalhar seus pedidos, definir prazos e acompanhar o progresso de suas orações.
+Com um sistema de autenticação simplificado via **Google Sign-In**, o aplicativo oferece um espaço dedicado para detalhar seus pedidos, definir prazos e acompanhar o progresso de suas orações.
 
 **Propósito:** Facilitar a prática consistente da oração, permitindo que você visualize e reflita sobre suas orações e as respostas divinas ao longo do tempo, e agora também, **acompanhar visualmente sua perseverança na intercessão tanto em uma perspectiva de longo prazo com a barra de progresso, quanto semanalmente com o novo quadro de dias da semana.**
 
 ## Funcionalidades Principais
 
-*   **Contas de Usuário:** Sistema de autenticação para garantir a privacidade e organização individual de cada usuário.
+*   **Autenticação via Google Sign-In:** Acesso simplificado e seguro ao seu diário de oração utilizando sua conta Google.
 *   **Cadastro Detalhado de Alvos de Oração:**
     *   Definição de título e descrição completa para cada pedido.
     *   Registro da data de início do alvo de oração.
@@ -49,6 +49,7 @@ Este é um aplicativo web frontend que utiliza o Firebase como backend. Para exe
 1.  **Configurar um projeto no Firebase:**
     *   Crie um projeto no [Firebase Console](https://console.firebase.google.com/).
     *   Habilite a autenticação (Authentication) e o banco de dados Firestore.
+    *   Habilite o provedor de autenticação **Google Sign-In** na seção "Authentication" > "Sign-in methods".
     *   Obtenha as credenciais de configuração do seu projeto Firebase (apiKey, authDomain, projectId, etc.).
 
 2.  **Substituir as credenciais no `script.js` e `orei.js`:**
@@ -68,12 +69,12 @@ Este é um aplicativo web frontend que utiliza o Firebase como backend. Para exe
     ```
 
 3.  **Abrir `index.html` (ou `orei.html` para o relatório) no navegador:**
-    *   Após configurar o Firebase e substituir as credenciais, você pode simplesmente abrir o arquivo `index.html` (ou `orei.html`) no seu navegador web para utilizar o aplicativo.
+    *   Após configurar o Firebase e substituir as credenciais, você pode simplesmente abrir o arquivo `index.html` (ou `orei.html`) no seu navegador web para utilizar o aplicativo. Ao acessar a página pela primeira vez, você será solicitado a fazer login com sua conta Google.
 
 ## Utilização
 
-1.  **Autenticação:**
-    *   Na página inicial (`index.html`), utilize a seção de autenticação para criar uma nova conta ("Registrar") ou entrar em uma conta existente ("Entrar") utilizando seu email e senha.
+1.  **Autenticação com Google Sign-In:**
+    *   Na página inicial (`index.html`), utilize o botão **"Entrar com o Google"** para fazer login com sua conta Google. Se você não tiver uma conta, o Firebase Authentication criará uma conta para você na primeira vez que você fizer login com o Google.
 
 2.  **Cadastrar um Novo Alvo de Oração:**
     *   Após autenticar-se, clique no botão "Novo" no menu principal para acessar o formulário de cadastro.
